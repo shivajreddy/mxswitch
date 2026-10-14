@@ -175,7 +175,16 @@ pub fn run() -> ! {
             if win::is_tray_running() {
                 text += "The tray app is already running.\n";
             } else {
-                match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).args(&extra).spawn()) {
+                // Detach the tray app's stdio: inheriting a pipe would keep the caller waiting.
+                let started = std::env::current_exe().and_then(|exe| {
+                    std::process::Command::new(exe)
+                        .args(&extra)
+                        .stdin(std::process::Stdio::null())
+                        .stdout(std::process::Stdio::null())
+                        .stderr(std::process::Stdio::null())
+                        .spawn()
+                });
+                match started {
                     Ok(_) => text += &format!("Started the tray app now – press {trigger} to switch.\n"),
                     Err(e) => text += &format!("Could not start the tray app now: {e}\n"),
                 }

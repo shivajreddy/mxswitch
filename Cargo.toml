@@ -1,9 +1,9 @@
 [package]
 name = "mxswitch"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 rust-version = "1.74"
-description = "Move a Logitech Easy-Switch mouse (MX Master, MX Anywhere, ...) to another PC with a hotkey. Tray app + CLI for Windows, no Logi Options+ needed."
+description = "Move a Logitech Easy-Switch mouse (MX Master, MX Anywhere, ...) to your other PC with one press of its gesture button. Windows tray app + CLI, no Logi Options+ needed."
 license = "MIT"
 repository = "https://github.com/shivajreddy/mxswitch"
 readme = "README.md"
